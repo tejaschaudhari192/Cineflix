@@ -57,7 +57,6 @@ const Header = () => {
     return (
         <header className="p-3 bg-gradient-to-b from-black">
             <img className="w-40" src={LOGO_IMG}/>
-            {/*{console.log(user)}*/}
 
             {user &&
             <div className='absolute top-0 right-0 flex w-fit '>

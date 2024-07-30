@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import Login from './Login'
-import Browse from './Browse'
+import Browse from './browse/Browse.jsx'
 import {createBrowserRouter, RouterProvider, useNavigate} from 'react-router-dom'
 import {onAuthStateChanged} from 'firebase/auth'
 import {auth} from '../utils/firebase'
