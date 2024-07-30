@@ -1,4 +1,4 @@
-import {LOGO_IMG, USER_IMG} from "../utils/constants.js";
+import {LOGO_IMG} from "../utils/constants.js";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import Fade from "@mui/material/Fade";
@@ -35,8 +35,6 @@ const Header = () => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/auth.user
                 const {uid, email, displayName, photoURL} = user;
                 dispatch(
                     addUser({
@@ -59,7 +57,7 @@ const Header = () => {
     return (
         <header className="p-3 bg-gradient-to-b from-black">
             <img className="w-40" src={LOGO_IMG}/>
-            {console.log(user)}
+            {/*{console.log(user)}*/}
 
             {user &&
             <div className='absolute top-0 right-0 flex w-fit '>
