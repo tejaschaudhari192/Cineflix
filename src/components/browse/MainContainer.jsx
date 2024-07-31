@@ -1,10 +1,13 @@
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
-import useMovieTrailer from "../hooks/useMovieTrailer.jsx";
-import VideoBg from "./browse/VideoBg.jsx";
-import VideoTitle from "./browse/VideoTitle.jsx";
+import useMovieTrailer from "../../hooks/useMovieTrailer.jsx";
+import VideoBg from "./VideoBg.jsx";
+import VideoTitle from "./VideoTitle.jsx";
+import useNowPlayingMovies from "../../hooks/useNowPlayingMovies.jsx";
+import SecondaryContainer from "./SecondaryContainer.jsx";
 
 const MainContainer = () => {
+    useNowPlayingMovies();
     const movies = useSelector((store) => store.movies?.nowPlayingMovies);
 
     if (!movies) return;
@@ -12,7 +15,7 @@ const MainContainer = () => {
     const {original_title, overview, id} = mainMovie;
 
     return (
-        <div className='w-screen h-screen'>
+        <div className='w-screen h-full bg-black'>
             <VideoTitle
                 title={original_title}
                 overview={overview}/>

@@ -1,6 +1,6 @@
 import {useSelector} from "react-redux";
 import useMovieTrailer from "../../hooks/useMovieTrailer.jsx";
-import React from "react";
+import React,{useEffect} from "react";
 
 const VideoBg = ({id}) => {
     const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
@@ -10,7 +10,7 @@ const VideoBg = ({id}) => {
         <div className='w-screen aspect-video'>
             <iframe
                 className="w-screen aspect-video"
-                src={`https://www.youtube.com/embed/${trailerVideo?.key}?si=8V6WE-0nSBRyqGGW&controls=0&autoplay=0&mute=1`}
+                src={`https://www.youtube.com/embed/${trailerVideo?.key}?si=8V6WE-0nSBRyqGGW&controls=0&autoplay=0&mute=1&controls=0`}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
