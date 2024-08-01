@@ -4,6 +4,19 @@ const USER_IMG = "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-av
 const PROFILE_PIC = "https://avatars.githubusercontent.com/u/104405128?v=4"
 const IMG_CDN = "https://image.tmdb.org/t/p/w200/"
 
+const GEMINI_KEY = "AIzaSyAdGe3Wwc50DFgBJ5v9AhnlXHywgYSjGgc"
+
+const GPT_PROMPT = "Act as a movie recommendation system and suggest some movies for the query, only give me name of 5 movies comma separated Example query = 5 best action movies, Example result = Die Hard,Mad Max: Fury Road,John Wick,The Matrix,Mission: Impossible - Fallout; query : "
+
+const SITE_TEXT = {
+    signInText: "Sign In",
+    subSignInText: "new to netflix?",
+    signInLinkText: "Sign in now",
+    signUpText: "Sign Up",
+    subSignOutText: "already registered?",
+    signUpLinkText:"sign up now"
+}
+
 const API_OPTIONS = {
     method: 'GET',
     headers: {
@@ -12,4 +25,7 @@ const API_OPTIONS = {
     }
 };
 
-export {LOGO_IMG,BG_IMG,USER_IMG,PROFILE_PIC,API_OPTIONS,IMG_CDN};
+export {LOGO_IMG,BG_IMG,USER_IMG,PROFILE_PIC,API_OPTIONS,IMG_CDN,
+    GEMINI_KEY,
+    GPT_PROMPT,
+    SITE_TEXT};

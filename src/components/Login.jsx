@@ -6,7 +6,7 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfil
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addUser} from "../utils/userSlice.js";
-import {PROFILE_PIC} from "../utils/constants.js";
+import {PROFILE_PIC, SITE_TEXT} from "../utils/constants.js";
 
 const Login = () => {
     const [isSignIn, setSignIn] = useState(true);
@@ -43,9 +43,9 @@ const Login = () => {
                         displayName: name.current.value,
                         photoURL: PROFILE_PIC
                     }).then(() => {
-                        const { uid, email, displayName,photoURL } = auth.currentUser;
+                        const {uid, email, displayName, photoURL} = auth.currentUser;
 
-                        dispatch(addUser({ uid: uid, email: email, displayName: displayName,photoURL:photoURL }))
+                        dispatch(addUser({uid: uid, email: email, displayName: displayName, photoURL: photoURL}))
 
                         // navigate("/browse");
                     }).catch((error) => {
@@ -83,18 +83,20 @@ const Login = () => {
 
                 <h1 className="font-bold text-3xl mb-4">{isSignIn ? "Sign In" : "Sign Up"}</h1>
                 {!isSignIn && <input ref={name} type="text" placeholder="Name"/>}
+
                 <input ref={email} type="email" placeholder="email"/>
                 <input ref={password} type="password" placeholder="password"/>
                 <p>{errorMsg}</p>
+
                 <button
                     className="px-4 py-2 m-4 bg-[--primary] hover:bg-[--secondary]"
                     onClick={() => handleSubmit(email, password)}>
-                    {isSignIn ? "Sign In" : "Sign Up"}</button>
-                <p className="capitalize text-gray-400">{isSignIn ? "new to netflix?" : "already registered?"}
+                    {isSignIn ? SITE_TEXT.signInText : SITE_TEXT.signOutText}</button>
+                <p className="capitalize text-gray-400">{isSignIn ? SITE_TEXT.subSignInText : SITE_TEXT.subSignOutText}
                     <span
                         onClick={() => handleSignForm(email, password)}
                         className="text-white cursor-pointer hover:underline font-semibold">
-                        {isSignIn ? "sign up now" : "sign in now"}
+                        {isSignIn ? SITE_TEXT.signUpLinkText : SITE_TEXT.signInLinkText}
                     </span>
                 </p>
             </form>

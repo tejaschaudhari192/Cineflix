@@ -9,7 +9,7 @@ import SecondaryContainer from "./SecondaryContainer.jsx";
 const Browse = () => {
     const showGPTSearch = useSelector((store) => store.gpt.showGPTSearch);
     return (
-        <div className='h-screen w-full'>
+        <div className='h-screen w-full transition-all duration-200'>
             <div className="w-screen absolute z-10">
                 <Header/>
                 {

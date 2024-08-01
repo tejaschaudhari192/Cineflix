@@ -10,7 +10,7 @@ const MovieList = ({title, movies}) => {
             <h1 className={"text-3xl font-bold"}>
                 {title}</h1>
             {/*{console.log(movies[0])}*/}
-            <div className={"w-screen h-fit flex gap-10 overflow-x-scroll"}>
+            <div className={"w-screen h-fit flex gap-10 overflow-x-scroll scrollbar-none"}>
                 {movies.map((movie) => {
                     return <MovieCard key={movie.id} movie={movie}/>
                 })}
