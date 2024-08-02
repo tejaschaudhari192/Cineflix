@@ -62,7 +62,7 @@ const Header = () => {
     }, [])
 
     return (
-        <header className="p-3 bg-gradient-to-b from-black h-32 w-screen">
+        <header className="p-3 bg-gradient-to-b from-black h-32 w-screen absolute z-20">
             <img className="w-32 sm:w-40" src={LOGO_IMG}/>
 
             {user &&

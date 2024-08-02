@@ -75,11 +75,11 @@ const Login = () => {
         }
     }
     return (
-        <div className="login bg-cover">
+        <div className="login bg-cover ">
             <Header/>
             <form
                 onSubmit={e => e.preventDefault()}
-                className="flex flex-col w-[450px] m-auto my-[5%] bg-black bg-opacity-75 p-14">
+                className="flex flex-col w-11/12 md:w-[450px]  absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-75 p-14">
 
                 <h1 className="font-bold text-3xl mb-4">{isSignIn ? "Sign In" : "Sign Up"}</h1>
                 {!isSignIn && <input ref={name} type="text" placeholder="Name"/>}
@@ -91,7 +91,7 @@ const Login = () => {
                 <button
                     className="px-4 py-2 m-4 bg-[--primary] hover:bg-[--secondary]"
                     onClick={() => handleSubmit(email, password)}>
-                    {isSignIn ? SITE_TEXT.signInText : SITE_TEXT.signOutText}</button>
+                    {isSignIn ? SITE_TEXT.signInText : SITE_TEXT.signUpText}</button>
                 <p className="capitalize text-gray-400">{isSignIn ? SITE_TEXT.subSignInText : SITE_TEXT.subSignOutText}
                     <span
                         onClick={() => handleSignForm(email, password)}
