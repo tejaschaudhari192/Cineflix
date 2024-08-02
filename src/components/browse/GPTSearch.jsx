@@ -15,7 +15,7 @@ const searchMovieTMDB = async (title) => {
 const GPTSearchBar = () => {
     const dispatch = useDispatch();
     const searchText = useRef(null)
-    const [resultSet, setResultSet] = useState([])
+    // const [resultSet, setResultSet] = useState([])
 
     const handleGPTSearchClick = async () => {
 
@@ -24,9 +24,20 @@ const GPTSearchBar = () => {
         const query = GPT_PROMPT + searchText.current.value;
 
         const result = await model.generateContent(query)
-        const response = await result.response;
+            .then((result) => {
+                const resultSet = result.response.text().split(',')
+                // console.log(resultSet)
+                const promiseSet = resultSet.map(async (title) => searchMovieTMDB(title))
+                const movieSet = Promise.all(promiseSet).then((movies) => {
+                    dispatch(addGPTMovieResult(movies))
+                })
+
+
+            }).catch((err) => {
+                console.log(err.message)
+            })
+        // const response = await result.response;
         // console.log(response.text().split(','));
-        setResultSet(response.text().split(','))
 
         // streaming text
 
@@ -40,13 +51,8 @@ const GPTSearchBar = () => {
         // }
 
 
-        const promiseSet = resultSet.map(title => searchMovieTMDB(title))
+        // const promiseSet = resultSet.map(title => searchMovieTMDB(title))
         // console.log(resultSet)
-
-        const movieSet = await Promise.all(promiseSet);
-        console.log(movieSet)
-
-        dispatch(addGPTMovieResult(movieSet))
 
 
     }
@@ -71,7 +77,8 @@ const GPTSearchBar = () => {
 
             <p
                 className="text-center mt-10 text-2xl">
-                Movies : {resultSet}</p>
+                {/*Movies : {resultSet}*/}
+            </p>
         </div>
     );
 };
@@ -80,11 +87,18 @@ const GPTSuggestion = () => {
     // const [movies, setMovies] = useState([])
     const gptMovies = useSelector((store) => store.gpt.gptMovieResult);
     if (!gptMovies) return null;
-    console.log(gptMovies)
-    const movies = gptMovies.map((movies) => {
-            return movies[0]
+    // console.log(gptMovies)
+    let movies = []
+    gptMovies.map(arr => {
+        if (arr.length > 0) {
+            movies.push(arr[0])
         }
-    )
+    })
+    // console.log(gptMovies)
+    console.log(movies)
+    // movies = movies.filter((movie) => {
+    //     movie['adult'];
+    // })
 
     // useEffect(() => {
     // setMovies(result)

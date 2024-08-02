@@ -1,4 +1,3 @@
-import image from './image.png'
 import './App.css'
 import Body from "./components/Body.jsx";
 import { Provider } from 'react-redux';
