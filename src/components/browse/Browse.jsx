@@ -14,7 +14,7 @@ const Browse = () => {
                 {
                     showGPTSearch ? <Suspense fallback={"loading..."}>
                         <GPTSearch/>
-                    </Suspense> : <div className="pt-[30%] md:pt-0 bg-black">
+                    </Suspense> : <div className="pt-[30%] md:pt-0 bg-black -mt-20">
                         <MainContainer/>
                         <Suspense fallback={"loading..."}>
                             <SecondaryContainer/>

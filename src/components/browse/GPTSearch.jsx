@@ -60,16 +60,16 @@ const GPTSearchBar = () => {
     return (
         <div className="p-10 login -mt-16">
             <form
-                className="bg-black grid grid-cols-12 m-auto w-1/2 gap-10 mt-16"
+                className="bg-black grid grid-cols-4 md:grid-cols-12 sm:grid-cols-6 m-auto md:w-1/2 md:gap-10 mt-16"
                 onSubmit={e => e.preventDefault()}>
                 <input
                     type="text"
                     ref={searchText}
                     placeholder={"What would you like to watch today ?"}
-                    className="p-4 bg-gray-800 w-full col-span-8"
+                    className="p-4 bg-gray-800 col-span-3 md:col-span-8"
                 />
                 <button
-                    className="p-2 m-2 bg-red-700 text-white rounded-lg col-span-4"
+                    className="p-2 m-2 bg-red-700 text-white rounded-lg col-span-1 md:col-span-4"
                     onClick={handleGPTSearchClick}>
                     Search
                 </button>
@@ -84,27 +84,18 @@ const GPTSearchBar = () => {
 };
 
 const GPTSuggestion = () => {
-    // const [movies, setMovies] = useState([])
     const gptMovies = useSelector((store) => store.gpt.gptMovieResult);
     if (!gptMovies) return null;
-    // console.log(gptMovies)
+
     let movies = []
     gptMovies.map(arr => {
         if (arr.length > 0) {
             movies.push(arr[0])
         }
     })
-    // console.log(gptMovies)
-    console.log(movies)
-    // movies = movies.filter((movie) => {
-    //     movie['adult'];
-    // })
 
-    // useEffect(() => {
-    // setMovies(result)
-    // },[])
     return (
-        <div className={"-mt-96"}>
+        <div className={"-mt-[500px]"}>
             <MovieList movies={movies} title={"suggestions"}/>
         </div>
     );

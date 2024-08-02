@@ -62,8 +62,8 @@ const Header = () => {
     }, [])
 
     return (
-        <header className="p-3 bg-gradient-to-b from-black">
-            <img className="w-40" src={LOGO_IMG}/>
+        <header className="p-3 bg-gradient-to-b from-black h-32 w-screen">
+            <img className="w-32 sm:w-40" src={LOGO_IMG}/>
 
             {user &&
                 <div className='absolute top-2 right-2 flex w-fit '>
@@ -73,7 +73,7 @@ const Header = () => {
                         onClick={handleGPTSearch}
                     >
                         {
-                            showGPTSearch ? "Homepage" : <svg width="30" height="30" viewBox="0 0 40 40" fill="none"
+                            showGPTSearch ? "Home" : <svg width="30" height="30" viewBox="0 0 40 40" fill="none"
                                                               xmlns="http://www.w3.org/2000/svg"
                                                               className="icon-md" role="img">
                                 <text x="-9999" y="-9999">ChatGPT</text>
