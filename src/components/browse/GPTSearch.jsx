@@ -1,8 +1,10 @@
-import React, {Suspense, useEffect, useRef, useState} from 'react';
-import genAI from "../../utils/genAI.js";
+import React, {Suspense, useRef} from 'react';
+import Loader from "react-js-loader";
+import genAI, {model} from "../../utils/genAI.js";
 import {API_OPTIONS, GPT_PROMPT} from "../../utils/constants.js";
 import {useDispatch, useSelector} from "react-redux";
 import {addGPTMovieResult} from "../../utils/gptSlice.js";
+import {addLoadingState} from "../../utils/loadSlice.js";
 import MovieList from "./MovieList.jsx";
 
 
@@ -15,26 +17,31 @@ const searchMovieTMDB = async (title) => {
 const GPTSearchBar = () => {
     const dispatch = useDispatch();
     const searchText = useRef(null)
-    // const [resultSet, setResultSet] = useState([])
 
     const handleGPTSearchClick = async () => {
-
-        const model = genAI.getGenerativeModel({model: "gemini-1.5-flash"});
+        dispatch(addLoadingState("Generating movies"))
 
         const query = GPT_PROMPT + searchText.current.value;
 
         const result = await model.generateContent(query)
             .then((result) => {
+                dispatch(addLoadingState("Getting names"))
+
+
                 const resultSet = result.response.text().split(',')
-                // console.log(resultSet)
+
                 const promiseSet = resultSet.map(async (title) => searchMovieTMDB(title))
                 const movieSet = Promise.all(promiseSet).then((movies) => {
+                    dispatch(addLoadingState("fetching details"))
+
                     dispatch(addGPTMovieResult(movies))
                 })
 
 
             }).catch((err) => {
-                console.log(err.message)
+                // console.log(err)
+                console.log(err.message === "[GoogleGenerativeAI Error]: Candidate was blocked due to SAFETY")
+                dispatch(addLoadingState(null))
             })
         // const response = await result.response;
         // console.log(response.text().split(','));
@@ -58,7 +65,7 @@ const GPTSearchBar = () => {
     }
 
     return (
-        <div className="p-10 login -mt-16">
+        <div className="p-10 login ">
             <form
                 className="bg-black grid grid-cols-4 md:grid-cols-12 sm:grid-cols-6 m-auto md:w-1/2 md:gap-10 mt-16"
                 onSubmit={e => e.preventDefault()}>
@@ -74,25 +81,32 @@ const GPTSearchBar = () => {
                     Search
                 </button>
             </form>
-
             <p
                 className="text-center mt-10 text-2xl">
-                {/*Movies : {resultSet}*/}
             </p>
         </div>
     );
 };
 
 const GPTSuggestion = () => {
+    const dispatch = useDispatch();
+    const loadingState = useSelector((store) => store.loader.loadingState);
+
     const gptMovies = useSelector((store) => store.gpt.gptMovieResult);
     if (!gptMovies) return null;
 
+
     let movies = []
+
     gptMovies.map(arr => {
         if (arr.length > 0) {
             movies.push(arr[0])
         }
     })
+
+    // console.log(loadingState)
+    if (loadingState === "fetching details")
+        dispatch(addLoadingState(null))
 
     return (
         <div className={"-mt-[500px]"}>
@@ -103,11 +117,18 @@ const GPTSuggestion = () => {
 
 
 const GPTSearch = () => {
+    const loadingState = useSelector((store) => store.loader.loadingState);
     return (
         <div>
             <GPTSearchBar/>
+            {
+                loadingState && <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <Loader type='heart' bgColor="red" color="white" title={loadingState} size={100}/>
+                </div>
+            }
+
             <Suspense fallback={"loadming..."}>
-            <GPTSuggestion/>
+                <GPTSuggestion/>
             </Suspense>
 
         </div>
