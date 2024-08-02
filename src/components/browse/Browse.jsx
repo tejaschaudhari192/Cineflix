@@ -1,11 +1,10 @@
-import React, {useEffect} from 'react'
+import React, {lazy, Suspense, useEffect} from 'react'
 import Header from "../Header.jsx";
 import MainContainer from "./MainContainer.jsx";
-import GPTSearch from "./GPTSearch.jsx";
 import {useSelector} from "react-redux";
-import SecondaryContainer from "./SecondaryContainer.jsx";
 
-
+const GPTSearch = lazy(() => import("./GPTSearch"));
+const SecondaryContainer = lazy(() => import("./SecondaryContainer"));
 const Browse = () => {
     const showGPTSearch = useSelector((store) => store.gpt.showGPTSearch);
     return (
@@ -13,10 +12,14 @@ const Browse = () => {
             <div className="w-screen absolute z-10">
                 <Header/>
                 {
-                    showGPTSearch ? <GPTSearch/> : <div className="pt-[30%] md:pt-0 bg-black">
-                            <MainContainer/>
+                    showGPTSearch ? <Suspense fallback={"loading..."}>
+                        <GPTSearch/>
+                    </Suspense> : <div className="pt-[30%] md:pt-0 bg-black">
+                        <MainContainer/>
+                        <Suspense fallback={"loading..."}>
                             <SecondaryContainer/>
-                        </div>
+                        </Suspense>
+                    </div>
                 }
             </div>
 

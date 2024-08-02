@@ -1,10 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {Suspense, useEffect, useRef, useState} from 'react';
 import genAI from "../../utils/genAI.js";
 import {API_OPTIONS, GPT_PROMPT} from "../../utils/constants.js";
 import {useDispatch, useSelector} from "react-redux";
 import {addGPTMovieResult} from "../../utils/gptSlice.js";
-import MovieCard from "./MovieCard.jsx";
 import MovieList from "./MovieList.jsx";
+
 
 const searchMovieTMDB = async (title) => {
     const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${title}&language=en-US&page=1`, API_OPTIONS)
@@ -115,7 +115,9 @@ const GPTSearch = () => {
     return (
         <div>
             <GPTSearchBar/>
+            <Suspense fallback={"loadming..."}>
             <GPTSuggestion/>
+            </Suspense>
 
         </div>
     );
