@@ -8,7 +8,7 @@ const SecondaryContainer = lazy(() => import("./SecondaryContainer"));
 const Browse = () => {
     const showGPTSearch = useSelector((store) => store.gpt.showGPTSearch);
     return (
-        <div className='h-screen w-full transition-all duration-200'>
+        <div className='h-screen w-full transition-all duration-200 overflow-x-hidden'>
             <div className="w-screen absolute z-10">
                 <Header/>
                 {

@@ -32,7 +32,6 @@ const Login = () => {
                 auth,
                 email.current.value,
                 password.current.value,
-                // name.current.value,
             )
                 .then((userCredential) => {
                     // Signed up 
@@ -47,7 +46,7 @@ const Login = () => {
 
                         dispatch(addUser({uid: uid, email: email, displayName: displayName, photoURL: photoURL}))
 
-                        // navigate("/browse");
+
                     }).catch((error) => {
                         setErrorMsg(error.message)
                     });
@@ -58,7 +57,7 @@ const Login = () => {
                     const errorMessage = error.message;
                     console.log(errorCode + " : " + errorMessage);
                     setErrorMsg(errorMessage)
-                    // navigate("/");
+
                 });
         } else {
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
@@ -79,9 +78,9 @@ const Login = () => {
             <Header/>
             <form
                 onSubmit={e => e.preventDefault()}
-                className="flex flex-col w-11/12 md:w-[450px]  absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-75 p-14">
+                className="flex flex-col sm:w-11/12 justify-center w-full h-full sm:h-fit sm:w-[450px]  absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-75 p-2 sm:p-14">
 
-                <h1 className="font-bold text-3xl mb-4">{isSignIn ? "Sign In" : "Sign Up"}</h1>
+                <h1 className="font-bold text-3xl mb-4">{isSignIn ? SITE_TEXT.signInText : SITE_TEXT.signUpText}</h1>
                 {!isSignIn && <input ref={name} type="text" placeholder="Name"/>}
 
                 <input ref={email} type="email" placeholder="email"/>
@@ -91,7 +90,9 @@ const Login = () => {
                 <button
                     className="px-4 py-2 m-4 bg-[--primary] hover:bg-[--secondary]"
                     onClick={() => handleSubmit(email, password)}>
-                    {isSignIn ? SITE_TEXT.signInText : SITE_TEXT.signUpText}</button>
+                    {isSignIn ? SITE_TEXT.signInText : SITE_TEXT.signUpText}
+                </button>
+
                 <p className="capitalize text-gray-400">{isSignIn ? SITE_TEXT.subSignInText : SITE_TEXT.subSignOutText}
                     <span
                         onClick={() => handleSignForm(email, password)}

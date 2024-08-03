@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
 import {API_OPTIONS} from "../../utils/constants.js";
 import MovieList from "./MovieList.jsx";
 

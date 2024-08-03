@@ -7,7 +7,7 @@ const MovieList = ({title, movies}) => {
 
     return (
         <div className={"w-fit h-fit flex gap-5 flex-col"}>
-            <h1 className={"text-3xl font-bold"}>
+            <h1 className={"text-2xl md:text-3xl font-bold"}>
                 {title}</h1>
             {/*{console.log(movies[0])}*/}
             <div className={"w-screen h-fit flex gap-10 overflow-x-scroll scrollbar-none"}>
