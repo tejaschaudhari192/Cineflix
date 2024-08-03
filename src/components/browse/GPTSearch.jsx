@@ -27,16 +27,13 @@ const GPTSearchBar = () => {
             .then((result) => {
                 dispatch(addLoadingState("Getting names"))
 
-
                 const resultSet = result.response.text().split(',')
 
                 const promiseSet = resultSet.map(async (title) => searchMovieTMDB(title))
                 const movieSet = Promise.all(promiseSet).then((movies) => {
                     dispatch(addLoadingState("fetching details"))
-
                     dispatch(addGPTMovieResult(movies))
                 })
-
 
             }).catch((err) => {
                 // console.log(err)
@@ -109,8 +106,8 @@ const GPTSuggestion = () => {
         dispatch(addLoadingState(null))
 
     return (
-        <div className={"-mt-[500px]"}>
-            <MovieList movies={movies} title={"suggestions"}/>
+        <div className={"md:-mt-[420px] -mt-[352px] bg-black"}>
+            <MovieList movies={movies} title={""}/>
         </div>
     );
 };
@@ -122,8 +119,8 @@ const GPTSearch = () => {
         <div>
             <GPTSearchBar/>
             {
-                loadingState && <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <Loader type='heart' bgColor="red" color="white" title={loadingState} size={100}/>
+                loadingState && <div className="absolute md:top-[43%] top-[37%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <Loader type='hourglass' bgColor="yellow" color="white" title={loadingState} size={100}/>
                 </div>
             }
 
