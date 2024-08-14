@@ -15,13 +15,12 @@ const MainContainer = () => {
     const {original_title, overview, id} = mainMovie;
 
     return (
-        <div className='w-screen h-full bg-black'>
+        <div className='w-full h-full bg-black'>
             <VideoTitle
                 title={original_title}
                 overview={overview}/>
             <VideoBg
                 id={id}/>
-
         </div>
     );
 };

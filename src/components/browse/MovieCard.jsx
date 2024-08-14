@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {IMG_CDN} from "../../utils/constants.js";
-import useGetBanner from "../../hooks/useGetBanner.jsx";
-import MovieDetailsModal from "./MovieInfo.jsx";
+import useGetBanner from "../../../trials/useGetBanner.jsx";
+import MovieDetailsModal from "./MovieDetails.jsx";
 
 const MovieCard = ({movie}) => {
     const title = movie.title;
@@ -29,7 +29,7 @@ const MovieCard = ({movie}) => {
                     style={{backgroundImage: `url(${poster})`}}>
                 </div>
                 <div>
-                    <h3 className="text-center text-sm md:text-lg md:font-semibold">
+                    <h3 className="text-center text-sm md:text-lg">
                         {title}
                     </h3>
                 </div>

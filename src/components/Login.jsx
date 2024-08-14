@@ -78,7 +78,7 @@ const Login = () => {
             <Header/>
             <form
                 onSubmit={e => e.preventDefault()}
-                className="flex flex-col sm:w-11/12 justify-center w-full h-full sm:h-fit sm:w-[450px]  absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-75 p-2 sm:p-14">
+                className="flex flex-col justify-center w-full h-full sm:h-fit sm:w-[450px]  absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-75 p-2 sm:p-14">
 
                 <h1 className="font-bold text-3xl mb-4">{isSignIn ? SITE_TEXT.signInText : SITE_TEXT.signUpText}</h1>
                 {!isSignIn && <input ref={name} type="text" placeholder="Name"/>}

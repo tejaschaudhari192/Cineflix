@@ -6,7 +6,7 @@ const IMG_CDN = "https://image.tmdb.org/t/p/w200/"
 
 const GEMINI_KEY = "AIzaSyAdGe3Wwc50DFgBJ5v9AhnlXHywgYSjGgc"
 
-const GPT_PROMPT = "Act as a movie recommendation system and suggest some movies for the query, only give me name of 5 movies comma separated Example query = 5 best action movies, Example result = Die Hard,Mad Max: Fury Road,John Wick,The Matrix,Mission: Impossible - Fallout; query : "
+const GPT_PROMPT = "Act as a movie recommendation system and suggest some movies for the query, only give me name of 5-10 movies comma separated; query : "
 
 const SITE_TEXT = {
     signInText: "Sign In",
