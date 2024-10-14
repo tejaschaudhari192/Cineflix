@@ -2,7 +2,7 @@ import React, {lazy, Suspense} from 'react';
 import Loader from "react-js-loader";
 import GPTSearchBar from "./GPTSearchBar.jsx";
 import {useSelector} from "react-redux";
-import GolLoader from "../GolLoader.jsx";
+import GolLoader from "../browse/GolLoader.jsx";
 
 const GPTSuggestion = lazy(() => import("./GPTSuggestion.jsx"));
 

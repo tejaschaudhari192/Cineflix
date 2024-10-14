@@ -2,10 +2,10 @@ import React, {lazy, Suspense, useEffect} from 'react'
 import Header from "../Header.jsx";
 import MainContainer from "./MainContainer.jsx";
 import {useSelector} from "react-redux";
-import GolLoader from "./GolLoader.jsx";
+import GolLoader from "./GolLoader";
 
-const GPTSearch = lazy(() => import("./gptSearch/GPTSearch.jsx"));
-const SecondaryContainer = lazy(() => import("./SecondaryContainer"));
+const GPTSearch = lazy(() => import("../gptSearch/GPTSearch.jsx"));
+const SecondaryContainer = lazy(() => import("./SecondaryContainer"));  
 const Browse = () => {
     const showGPTSearch = useSelector((store) => store.gpt.showGPTSearch);
     return (

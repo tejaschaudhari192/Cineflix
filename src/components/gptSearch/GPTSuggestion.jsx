@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
-import {addLoadingState} from "../../../utils/loadSlice.js";
-import MovieList from "../MovieList.jsx";
+import {addLoadingState} from "../../utils/loadSlice.js";
+import MovieList from "../browse/MovieList.jsx";
 import React from "react";
 
 const GPTSuggestion = () => {
@@ -24,7 +24,7 @@ const GPTSuggestion = () => {
 
     if(loadingState) return null
     return (
-        <div className={"bottom-20 md:bottom-4 z-0 bg-black"}>
+        <div className={"bottom-20 md:bottom-4 z-0"}>
             <MovieList movies={movies} title={""}/>
         </div>
     );

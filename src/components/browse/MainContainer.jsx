@@ -1,10 +1,8 @@
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
-import useMovieTrailer from "../../hooks/useMovieTrailer.jsx";
 import VideoBg from "./VideoBg.jsx";
 import VideoTitle from "./VideoTitle.jsx";
 import useNowPlayingMovies from "../../hooks/useNowPlayingMovies.jsx";
-import SecondaryContainer from "./SecondaryContainer.jsx";
 
 const MainContainer = () => {
     useNowPlayingMovies();

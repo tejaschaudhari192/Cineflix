@@ -1,9 +1,9 @@
-import {API_OPTIONS, GPT_PROMPT} from "../../../utils/constants.js";
+import {API_OPTIONS, GPT_PROMPT} from "../../utils/constants.js";
 import {useDispatch} from "react-redux";
 import React, {useRef, useState} from "react";
-import {addLoadingState} from "../../../utils/loadSlice.js";
-import {model} from "../../../utils/genAI.js";
-import {addGPTMovieResult} from "../../../utils/gptSlice.js";
+import {addLoadingState} from "../../utils/loadSlice.js";
+import {model} from "../../utils/genAI.js";
+import {addGPTMovieResult} from "../../utils/gptSlice.js";
 
 const searchMovieTMDB = async (title) => {
     const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${title}&language=en-US&page=1&region=IN`, API_OPTIONS)
