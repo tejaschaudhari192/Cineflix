@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {IMG_CDN} from "../../utils/constants.js";
-import useGetBanner from "../../../trials/useGetBanner.jsx";
 import MovieDetailsModal from "./MovieDetails.jsx";
 
 const MovieCard = ({movie}) => {
